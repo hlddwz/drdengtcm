@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="开阳天行出版社 - 专业图书出版服务">
+    <title>Kaiyang Tianxing Publishing - 开阳天行出版社</title>
+
+    <style>
+        /* ==================== 基础重置与变量定义 ==================== */
+        :root {
+            /* 色彩系统 - 避免魔法数值 */
+            --primary-blue: #1f3a5f;
+            --dark-blue: #17304d;
+            --accent-green: #2e7d32;
+            --bg-gray: #f4f6f8;
+            --text-dark: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow: rgba(0,0,0,0.05);
+
+            /* 间距系统 */
+            --space-xs: 10px;
+            --space-sm: 15px;
+            --space-md: 20px;
+            --space-lg: 25px;
+            --space-xl: 35px;
+            --space-xxl: 50px;
+
+            /* 字体系统 */
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+        }
+
+        /* 盒模型统一 */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ==================== 全局样式 ==================== */
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased; /* 字体平滑 */
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ==================== 头部区域 ==================== */
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: var(--space-xxl) var(--space-md);
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin-top: var(--space-sm);
+            font-size: 18px;
+            opacity: 0.9; /* 修正为完整写法 */
+            font-weight: 300;
+        }
+
+        /* ==================== 导航栏 ==================== */
+        nav {
+            background-color: var(--dark-blue);
+            padding: var(--space-md);
+            text-align: center;
+            position: sticky; /* 粘性定位 */
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            color: var(--white);
+            margin: 0 var(--space-md);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px var(--space-sm);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-block; /* 确保可点击区域 */
+        }
+
+        /* 可访问性：悬停与焦点状态 */
+        nav a:hover,
+        nav a:focus {
+            background-color: rgba(255,255,255,0.15);
+            outline: 2px solid var(--white);
+            outline-offset: 2px;
+        }
+
+        /* 激活状态 */
+        nav a:active {
+            transform: translateY(1px);
+        }
+
+        /* ==================== 主容器 ==================== */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--space-md);
+            width: 100%; /* 防止横向溢出 */
+        }
+
+        /* ==================== 内容区块 ==================== */
+        section {
+            background-color: var(--white);
+            padding: var(--space-xl);
+            margin-top: var(--space-lg);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* 微妙悬停效果 */
+        section:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* 限定范围的标题样式 - 避免全局污染 */
+        section h2 {
+            color: var(--primary-blue);
+            margin-top: 0;
+            margin-bottom: var(--space-md);
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        /* 限定范围的列表样式 */
+        section ul {
+            line-height: 1.8;
+            padding-left: 25px; /* 恢复默认缩进 */
+            margin: var(--space-md) 0;
+        }
+
+        section li {
+            margin-bottom: var(--space-xs);
+        }
+
+        /* 辅助文本 */
+        .small {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: var(--space-md);
+            display: block;
+        }
+
+        /* ==================== 按钮系统 ==================== */
+        .button-group {
+            margin-top: var(--space-md);
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-md); /* 使用 gap 替代 margin-left */
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px; /* 确保可点击区域 */
+        }
+
+        .button-secondary {
+            background-color: var(--accent-green);
+        }
+
+        /* 按钮交互状态 */
+        .button:hover {
+            background-color: #152a45; /* 加深主色 */
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .button-secondary:hover {
+            background-color: #1b5e20; /* 加深绿色 */
+        }
+
+        .button:focus {
+            outline: 3px solid #4d90fe; /* 高对比度焦点环 */
+            outline-offset: 2px;
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        /* ==================== 页脚 ==================== */
+        footer {
+            text-align: center;
+            padding: var(--space-xl);
+            margin-top: var(--space-xl);
+            color: var(--text-light);
+            font-size: 14px;
+            border-top: 1px solid #ddd;
+        }
+
+        footer p {
+            margin-bottom: var(--space-xs);
+        }
+
+        /* ==================== 响应式设计 ==================== */
+        /* 平板设备 */
+        @media (max-width: 768px) {
+            header {
+                padding: var(--space-xl) var(--space-md);
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+
+            nav {
+                padding: var(--space-sm);
+                position: relative; /* 取消粘性定位 */
+            }
+
+            nav a {
+                margin: 5px;
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+
+            section {
+                padding: var(--space-md);
+                margin-top: var(--space-md);
+            }
+
+            section h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* 手机设备 */
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 24px;
+            }
+
+            nav a {
+                display: block; /* 垂直堆叠 */
+                margin: 5px 0;
+                width: 100%;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+
+            .button {
+                width: 100%; /* 全宽按钮 */
+            }
+
+            section ul {
+                padding-left: 20px;
+            }
+        }
+
+        /* ==================== 打印样式 ==================== */
+        @media print {
+            nav,
+            .button-group {
+                display: none; /* 打印时隐藏导航和按钮 */
+            }
+
+            section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid; /* 防止分页截断 */
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            header {
+                background: none;
+                color: black;
+                border-bottom: 2px solid var(--primary-blue);
+            }
+        }
+
+        /* ==================== 减少动画（尊重用户偏好） ==================== */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header role="banner">
+        <h1>Kaiyang Tianxing Publishing</h1>
+        <p>开阳天行出版社 - 传播知识，点亮智慧</p>
+    </header>
+
+    <!-- 导航 -->
+    <nav role="navigation" aria-label="主导航">
+        <a href="#home">首页</a>
+        <a href="#about">关于我们</a>
+        <a href="#books">图书分类</a>
+        <a href="#authors">作者专栏</a>
+        <a href="#contact">联系方式</a>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="container" role="main">
+        <section id="about" aria-labelledby="about-title">
+            <h2 id="about-title">关于出版社</h2>
+            <p>开阳天行出版社成立于2025年，专注于学术著作、文学小说和教育出版领域。我们致力于发掘优秀作者，出版高品质图书，为读者提供优质的阅读体验。</p>
+
+            <div class="button-group">
+                <a href="#" class="button">了解更多</a>
+                <a href="#" class="button button-secondary">在线购书</a>
+            </div>
+        </section>
+
+        <section id="features" aria-labelledby="features-title">
+            <h2 id="features-title">出版领域</h2>
+            <ul>
+                <li><strong>学术出版：</strong> 专著、论文集、研究报告</li>
+                <li><strong>文学出版：</strong> 小说、散文、诗歌、传记</li>
+                <li><strong>教育出版：</strong> 教材、教辅、儿童读物</li>
+                <li><strong>数字出版：</strong> 电子书、有声书、在线课程</li>
+            </ul>
+            <span class="small">注：所有图书均经过三审三校，确保内容质量和编校标准。</span>
+        </section>
+
+        <section id="contact" aria-labelledby="contact-title">
+            <h2 id="contact-title">联系信息</h2>
+            <p>地址：香港中西区西营盘正街18号启正中心12楼3A室</p>
+            <p>电话：086 18848347129</p>
+            <p>邮箱：contact@kaiyangtianxing.com</p>
+
+            <div class="button-group">
+                <a href="#" class="button">投稿指南</a>
+                <a href="#" class="button button-secondary">作者入驻</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Kaiyang Tianxing Publishing. 保留所有权利。</p>
+        <p class="small">ICP备xxxxxxxx号</p>
+    </footer>
+</body>
+</html>
